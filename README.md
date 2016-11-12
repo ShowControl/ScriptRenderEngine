@@ -1,6 +1,5 @@
-#Script Parse Module
+#Script Render Module
 
-Simple module that takes text from a script file (or TK entity), and parses the text and tags into a data-structure useful for managinig and editing the script. 
-
+This module takes input from the ScriptParseModule in the form of a parsed script data-structure. This module is able to render that structure into a tk Text widget.
 
 
