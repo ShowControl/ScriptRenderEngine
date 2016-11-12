@@ -23,16 +23,19 @@ class ScriptRenderEngine(object):
         self.style_title_font = tkFont.Font(family="Helvetica", size=24, weight=tkFont.BOLD)
         self.style_copyright_font = tkFont.Font(family="Helvetica", size=12, slant=tkFont.ITALIC)
         self.style_subtitle_font = tkFont.Font(family="Helvetica", size=20, weight=tkFont.BOLD)
+        self.style_page_font = tkFont.Font(family="Helvetica", size=8, weight=tkFont.BOLD)
 
         self.target.tag_configure("copyright", font=self.style_copyright_font)
         self.target.tag_configure("title", justify='center', font=self.style_title_font)
         self.target.tag_configure("subtitle", justify='center', font=self.style_subtitle_font)
+        self.target.tag_configure("page", justify='right', font=self.style_page_font)
 
     def load_tag_map(self):
         """Create a map that maps tags to render fucntions"""
         self.tag_map['title'] = self.render_tk_title
         self.tag_map['subtitle'] = self.render_tk_subtitle
         self.tag_map['copyright'] = self.render_tk_copyright
+        self.tag_map['page'] = self.render_tk_page
 
     def render_tk_title(self):
         """Generate a title"""
@@ -45,6 +48,10 @@ class ScriptRenderEngine(object):
     def render_tk_copyright(self):
         """Generate a copyright"""
         self.render_tk_style(self.tag['text']+"\n", "copyright")
+
+    def render_tk_page(self):
+        """Tag a page"""
+        self.render_tk_style(self.tag['text']+"\n", "page")
 
     def render_tk_style(self, text, style):
         """Generic Style application function"""
